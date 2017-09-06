@@ -1,0 +1,19 @@
+global
+#    daemon
+    log 127.0.0.1 local2
+    maxconn 256
+
+defaults
+    mode tcp
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+ 
+    log global
+
+frontend @SERVICE@-in
+    bind *:{{getv "/@SERVICE@/server_port"}}
+default_backend @SERVICE@-server 
+
+backend @SERVICE@-server
+server @SERVICE@ {{getv "/@SERVICE@/server_name"}}:{{getv "/@SERVICE@/server_port"}}
