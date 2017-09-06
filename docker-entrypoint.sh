@@ -14,11 +14,7 @@ touch /var/log/haproxy.log
 tail -f /var/log/haproxy.log &
 
 # Create haproxy.cfg
-sed -r "s/@SERVICE@/${SERVICE}/g" /etc/confd/templates/haproxy.cfg.tmpl.in > /etc/confd/templates/haproxy.cfg.tmpl 
-
-sed -r "s/@SERVICE@/${SERVICE}/g" /etc/confd/conf.d/haproxy.cfg.toml.in > /etc/confd/conf.d/haproxy.cfg.toml
-
-confd -onetime -backend etcd -node http://${ETCD_CLIENT_IP}:2379 --prefix="/haproxy-config"
+confd -onetime -backend etcd -node http://${ETCD_CLIENT_IP}:2379
 
 # Start haproxy
 haproxy -f /usr/local/etc/haproxy/haproxy.cfg

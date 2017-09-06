@@ -11,9 +11,14 @@ defaults
  
     log global
 
-frontend @SERVICE@-in
-    bind *:{{getv "/@SERVICE@/server_port"}}
-default_backend @SERVICE@-server 
+# Get haproxy-config with etcd
+ 
+{{range $dir := lsdir "/haproxy-config"}}
+frontend {{$dir}}-in
+{{$custdir := printf "/haproxy-config/%s/frontend/*" $dir}}{{range gets $custdir}}
+{{base .Key}}  {{.Value}}{{end}}
 
-backend @SERVICE@-server
-server @SERVICE@ {{getv "/@SERVICE@/server_name"}}:{{getv "/@SERVICE@/server_port"}}
+backend {{$dir}}-server
+{{$custdir := printf "/haproxy-config/%s/backend/*" $dir}}{{range gets $custdir}}
+server {{base .Key}}  {{.Value}}{{end}}
+{{end}}
