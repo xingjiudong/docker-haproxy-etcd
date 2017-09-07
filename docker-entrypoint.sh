@@ -2,7 +2,6 @@
 set -e
 
 : ${ETCD_CLIENT_IP:=127.0.0.1}
-: ${SERVICE:=service}
 
 # Make sure service is running
 service rsyslog start
@@ -14,6 +13,7 @@ touch /var/log/haproxy.log
 tail -f /var/log/haproxy.log &
 
 # Create haproxy.cfg
+mkdir -p /usr/local/etc/haproxy
 confd -onetime -backend etcd -node http://${ETCD_CLIENT_IP}:2379
 
 # Start haproxy
