@@ -13,12 +13,12 @@ defaults
 
 # Get haproxy-config with etcd
  
-{{range $dir := lsdir "/haproxy-config"}}
+{{range $dir := lsdir "/@PROJECT_NAME@"}}
 frontend {{$dir}}-in
-{{$custdir := printf "/haproxy-config/%s/frontend/*" $dir}}{{range gets $custdir}}
+{{$custdir := printf "/@PROJECT_NAME@/%s/frontend/*" $dir}}{{range gets $custdir}}
 {{base .Key}}  {{.Value}}{{end}}
 
 backend {{$dir}}-server
-{{$custdir := printf "/haproxy-config/%s/backend/*" $dir}}{{range gets $custdir}}
+{{$custdir := printf "/@PROJECT_NAME@/%s/backend/*" $dir}}{{range gets $custdir}}
 server {{base .Key}}  {{.Value}}{{end}}
 {{end}}
