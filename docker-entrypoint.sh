@@ -2,7 +2,6 @@
 set -e
 
 : ${ETCD_CLIENT_IP:=127.0.0.1}
-: ${{PROJECT_NAME:=}
 
 # Make sure service is running
 service rsyslog start
