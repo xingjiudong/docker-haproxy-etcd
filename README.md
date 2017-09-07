@@ -21,7 +21,7 @@
 
 - PROJECT_NAME (Projects that include Mongo and OPENLDAP)
 
-- docker run --name some-name -p 27017:27017 -p 389:389 -d xingjiudong/haproxy-etcd
+- docker run --name some-name -p 27017:27017 -p 389:389 -e ETCD_CLIENT_IP=192.168.0.1  -e PROJECT_NAME=project00 -d xingjiudong/haproxy-etcd
   
  
 
