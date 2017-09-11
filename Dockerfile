@@ -6,7 +6,7 @@ ENV CONFD_VERSION 0.11.0
 
 RUN apt-get update && apt-get install rsyslog wget -y --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
-RUN wget https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 --no-check-certificate && \
+    wget https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 --no-check-certificate && \
     chmod +x confd-${CONFD_VERSION}-linux-amd64 && \
     mv confd-${CONFD_VERSION}-linux-amd64 /usr/local/bin/confd && \
     sed -i 's/#$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf && \
