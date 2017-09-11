@@ -7,11 +7,6 @@ ENV CONFD_VERSION 0.11.0
 
 RUN apt-get update && apt-get install rsyslog wget -y --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
-    wget https://github.com/coreos/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-amd64.tar.gz --no-check-certificate && \
-    tar xvzf etcd-${ETCD_VERSION}-linux-amd64.tar.gz && \
-    mv etcd-${ETCD_VERSION}-linux-amd64/etcdctl /usr/local/bin/etcdctl && \
-    rm -rf etcd-${ETCD_VERSION}-linux-amd64 && \
-    rm -rf etcd-${ETCD_VERSION}-linux-amd64.tar.gz
 RUN wget https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 --no-check-certificate && \
     chmod +x confd-${CONFD_VERSION}-linux-amd64 && \
     mv confd-${CONFD_VERSION}-linux-amd64 /usr/local/bin/confd && \
