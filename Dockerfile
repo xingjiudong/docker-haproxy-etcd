@@ -2,7 +2,6 @@ FROM haproxy:1.7
 
 MAINTAINER xingjiudong <25635680@qq.com>
 
-ENV ETCD_VERSION v2.3.7
 ENV CONFD_VERSION 0.11.0 
 
 RUN apt-get update && apt-get install rsyslog wget -y --no-install-recommends && \
