@@ -16,6 +16,4 @@ COPY ./confd /etc/confd
 COPY ./haproxy.conf /etc/rsyslog.d
 COPY ./docker-entrypoint.sh /
 
-EXPOSE 27017
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
