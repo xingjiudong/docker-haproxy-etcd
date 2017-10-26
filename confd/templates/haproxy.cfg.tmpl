@@ -5,9 +5,9 @@ global
 
 defaults
     mode tcp
-    timeout connect ${TIMEOUT_CONNECT:-5000ms}
-    timeout client  ${TIMEOUT_CLIENT:-50000ms}
-    timeout server  ${TIMEOUT_SERVER:-50000ms}
+    timeout connect ${TIMEOUT_CONNECT}
+    timeout client  ${TIMEOUT_CLIENT}
+    timeout server  ${TIMEOUT_SERVER}
  
     log global
 
