@@ -10,13 +10,21 @@ defaults
     maxconn "${MAXCONN}" 
     log global
 
+# Enable Stats in HAProxy
+listen admin_stats
+    bind 0.0.0.0:8000
+    mode http
+    stats refresh 10s
+    stats uri /haproxy?stats
+    stats realm "HAProxy Statistics"
+    stats hide-version
+
 # Get haproxy-config with etcd
  
 {{range $dir := lsdir "/"}}
 frontend {{$dir}}-in
     bind {{$binddir := printf "/%s/frontend/bind" $dir}}{{getv $binddir}}
     default_backend {{$default_backenddir := printf "/%s/frontend/default_backend" $dir}}{{getv $default_backenddir}}
-    stats enable 
 backend {{$custdir := printf "/%s/frontend/default_backend" $dir}}{{getv $custdir}}
     {{$custdir := printf "/%s/backend/*" $dir}}{{range gets $custdir}}
     server {{base .Key}}  {{.Value}}{{end}}
