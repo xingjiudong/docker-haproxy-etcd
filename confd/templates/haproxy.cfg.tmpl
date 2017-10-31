@@ -16,7 +16,7 @@ defaults
 frontend {{$dir}}-in
     bind {{$binddir := printf "/%s/frontend/bind" $dir}}{{getv $binddir}}
     default_backend {{$default_backenddir := printf "/%s/frontend/default_backend" $dir}}{{getv $default_backenddir}}
-
+    stats enable 
 backend {{$custdir := printf "/%s/frontend/default_backend" $dir}}{{getv $custdir}}
     {{$custdir := printf "/%s/backend/*" $dir}}{{range gets $custdir}}
     server {{base .Key}}  {{.Value}}{{end}}
