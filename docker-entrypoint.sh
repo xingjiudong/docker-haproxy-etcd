@@ -6,12 +6,6 @@ export TIMEOUT_SERVER=${TIMEOUT_SERVER:-50s}
 export TIMEOUT_HTTP_KEEP_ALIVE=${TIMEOUT_HTTP_KEEP_ALIVE:-10s}
 export MAXCONN=${MAXCONN:-2000}
 
-echo ${TIMEOUT_CONNECT}
-echo ${TIMEOUT_CLIENT}
-echo ${TIMEOUT_SERVER}
-echo ${TIMEOUT_HTTP_KEEP_ALIVE}
-echo ${MAXCONN}
-
 # Make sure service is running
 service rsyslog start
 
