@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 export TIMEOUT_CONNECT=${TIMEOUT_CONNECT:-5s}
 export TIMEOUT_CLIENT=${TIMEOUT_CLIENT:-50s}
