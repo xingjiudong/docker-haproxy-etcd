@@ -1,7 +1,7 @@
 global
 #    daemon
     log 127.0.0.1 local2
-    maxconn "2500"
+    maxconn 2500
  
 defaults
     mode tcp
@@ -10,7 +10,7 @@ defaults
     timeout server "${TIMEOUT_SERVER}"
     timeout http-keep-alive "${TIMEOUT_HTTP_KEEP_ALIVE}"
     log global
-
+    maxconn 3000
 # Enable Stats in HAProxy
 listen admin_stats
     bind 0.0.0.0:8000
